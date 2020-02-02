@@ -2,13 +2,22 @@ import React, { useState, useEffect } from "react";
 import CashFlow from "./CashFlow";
 const CashFlowUI = props => {
   const [amtMonth, setAmtMonth] = useState(Number(""));
+  const [incomeInput, setIncomeInput] = useState();
+
+  //Month onChange
   const handleChanges = e => {
     setAmtMonth(Number(e.target.value));
     // console.log(amtMonth);
   };
+  //Income onChange
+  const handleIncomeChange = e => {
+    setIncomeInput(e.target.value);
+    console.log(e.target.value);
+  };
   const submitForm = e => {
     e.preventDefault();
     setAmtMonth(amtMonth);
+    setIncomeInput(incomeInput);
 
     //Passed to CashFlow
     console.log("submit " + props);
@@ -16,15 +25,25 @@ const CashFlowUI = props => {
 
   useEffect(() => {
     setAmtMonth(amtMonth);
+    setIncomeInput(incomeInput);
     // console.log("useEff " + amtMonth);
-  }, [amtMonth]);
+    // console.log(incomeInput);
+  }, [amtMonth, incomeInput]);
 
   return (
     <div>
-      <CashFlow amtMonth={amtMonth} />
-
       <form onSubmit={submitForm}>
-        <label htmlFor="monthAmt">Amount of Months</label>
+        <label htmlFor="incomeInputField">Income </label>
+        <input
+          id="incomeInputField"
+          type="number"
+          name="incomeInputField"
+          onChange={handleIncomeChange}
+          value={props.incomeInput}
+        />
+        <br />
+        <br />
+        <label htmlFor="monthAmt">Months</label>
         <select
           id="monthAmt"
           type="select"
@@ -47,6 +66,10 @@ const CashFlowUI = props => {
           <option value="12">12</option>
         </select>
       </form>
+      <h5>Cash Flow Forcast</h5>
+
+      {/* Put in state props from budget inputted var */}
+      <CashFlow amtMonth={amtMonth} incomeInput={incomeInput} />
     </div>
   );
 };
