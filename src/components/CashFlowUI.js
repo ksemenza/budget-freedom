@@ -11,12 +11,12 @@ const CashFlowUI = props => {
     setAmtMonth(amtMonth);
 
     //Passed to CashFlow
-    // console.log("submit " + props);
+    console.log("submit " + props);
   };
 
   useEffect(() => {
     setAmtMonth(amtMonth);
-    console.log("useEff " + amtMonth);
+    // console.log("useEff " + amtMonth);
   }, [amtMonth]);
 
   return (
@@ -46,7 +46,6 @@ const CashFlowUI = props => {
           <option value="11">11</option>
           <option value="12">12</option>
         </select>
-        <button type="submit"> {"Submit"}</button>
       </form>
     </div>
   );

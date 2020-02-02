@@ -7,19 +7,17 @@ const CashFlow = props => {
 
   //To-do replace hard coding with select input var
   let monthAmtSelect = props.amtMonth;
+  console.log("montAmtSel " + monthAmtSelect);
 
   //Creates Arr of  Monthly Spare Income
   let incomeArr = Array(props.amtMonth).fill(spareIncome);
-  // console.log(incomeArr);
-  //Empty Arr for Spare Income Arr
-  const incomeTallyArr = [];
-  //Mutiplying Month amt by Income
-  for (let i = 0; i < monthAmtSelect; i++)
-    //NEW Spare Income Tally
-    incomeTallyArr.push(incomeArr[i] * i);
-  console.log(incomeTallyArr);
+  console.log("incomeArr " + incomeArr);
+  let i = 1;
 
-  return <div>CasH Flow</div>;
+  let tally = incomeArr.map(x => x * i++);
+  console.log("tally array " + tally);
+
+  return <div>{tally}</div>;
 };
 
 export default CashFlow;
